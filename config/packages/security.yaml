@@ -38,6 +38,8 @@ security:
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/joke/member, roles: [ROLE_MEMBER, ROLE_ADMIN] }
+         - { path: ^/joke/premium, roles: [ROLE_PREMIUM, ROLE_ADMIN] }
 
 when@test:
     security:
