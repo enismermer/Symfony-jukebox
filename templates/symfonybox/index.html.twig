@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jukebox SymfonyBox{% endblock %}
+{% block body %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+<style>
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {text-align:center;}
+
+    .icon-music {
+        width: 1.5em;
+        height: 1.5em;
+        margin: 0em;
+    }
+
+    swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+</style>
+
+<div>
+    <h1>
+        <img src="../assets/img/icon-music.webp" alt="icon music" class="icon-music">
+        SymfonyBox
+        <img src="../assets/img/icon-music.webp" alt="icon music" class="icon-music">
+    </h1>
+</div>
+<br><br>
+<div class="swiper">
+    <swiper-container class="mySwiper" pagination="true">
+        <swiper-slide><video src="./assets/Jukebox/The-Power-of-Love-(Back to the Future).mp4" width="1200" height="600" controls loop></video></swiper-slide>
+        <swiper-slide><video src="./assets/Jukebox/Jul - Briganté [Clip Officiel].mp4" width="1200" height="600" controls loop></video></swiper-slide>
+        <swiper-slide><video src="./assets/Jukebox/MRC - On est là (Clip officiel).mp4" width="1200" height="600" controls loop></video></swiper-slide>
+        <swiper-slide><video src="./assets/Jukebox/Jack Sparrow - Tribute.mp4" width="1200" height="600" controls loop></video></swiper-slide>
+        <swiper-slide><video src="./assets/Jukebox/Eminem - Lose Yourself [HD].mp4" controls loop></video></swiper-slide>
+    </swiper-container>
+</div>
+  
+  <script src="{{asset ('./assets/js/box.js')}}" defer></script>
+  {# Install Swiper.js en js #}
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+{% endblock %}
