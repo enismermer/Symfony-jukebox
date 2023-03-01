@@ -3,6 +3,7 @@
 {% block title %}Jukebox SymfonyBox{% endblock %}
 {% block body %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+<script src="{{asset ('assets/js/box.js')}}" defer></script>
 <style>
     html,
     body {
@@ -11,22 +12,41 @@
     }
 
     body {
-      background: #eee;
+      background: #A600FF;
       font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
       font-size: 14px;
-      color: #000;
+      color: #fff;
       margin: 0;
       padding: 0;
     }
 
+    /****************** Titre principal ******************/
     h1 {text-align:center;}
 
+    /*** Icone à gauche et à droite du titre principal ***/
     .icon-music {
         width: 1.5em;
         height: 1.5em;
         margin: 0em;
     }
 
+    /******************** Connexion ********************/
+    .login a {
+        text-decoration: none;
+        color: #FFFFFF;
+        margin-left: 3em;
+        float: left;
+    }
+
+    /***************** Inscription *****************/
+    .register a {
+        margin-left: 3.6em;
+        float: left;
+    }
+
+    /************************************************
+                    Gestion Swiper.js 
+    *************************************************/
     swiper-container {
       width: 100%;
       height: 100%;
@@ -47,6 +67,18 @@
       height: 100%;
       object-fit: cover;
     }
+
+    /***************** Vinyle animation ******************/
+    .record-container {
+    display: inline-block;
+    overflow: hidden;
+    width: 400px; height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 6px #99907e;
+    background: #b5ac9a;
+    margin-left: 27%;
+    visibility: hidden;
+    }
 </style>
 
 <div>
@@ -55,19 +87,29 @@
         SymfonyBox
         <img src="../assets/img/icon-music.webp" alt="icon music" class="icon-music">
     </h1>
+
+    <h3 class="login">
+        <a href="http://127.0.0.1:8000/login">Connexion</a>
+    </h3>
+    <h4 class="register">
+        <a href="http://127.0.0.1:8000/register">Inscription</a>
+    </h4>
 </div>
+
 <br><br>
-<div class="swiper">
+
     <swiper-container class="mySwiper" pagination="true">
         <swiper-slide><video src="./assets/Jukebox/The-Power-of-Love-(Back to the Future).mp4" width="1200" height="600" controls loop></video></swiper-slide>
         <swiper-slide><video src="./assets/Jukebox/Jul - Briganté [Clip Officiel].mp4" width="1200" height="600" controls loop></video></swiper-slide>
         <swiper-slide><video src="./assets/Jukebox/MRC - On est là (Clip officiel).mp4" width="1200" height="600" controls loop></video></swiper-slide>
         <swiper-slide><video src="./assets/Jukebox/Jack Sparrow - Tribute.mp4" width="1200" height="600" controls loop></video></swiper-slide>
-        <swiper-slide><video src="./assets/Jukebox/Eminem - Lose Yourself [HD].mp4" controls loop></video></swiper-slide>
+        <swiper-slide><video src="./assets/Jukebox/Eminem - Lose Yourself [HD].mp4" width="1200" height="600" controls loop></video></swiper-slide>
+        <swiper-slide><video src="./assets/Jukebox/MERO - Baller los (Official Video).mp4" width="1200" height="600" controls loop></video></swiper-slide>
     </swiper-container>
-</div>
-  
-  <script src="{{asset ('./assets/js/box.js')}}" defer></script>
+
+    <div class='record-container'>
+        <img src='https://dribbble.s3.amazonaws.com/users/2009/screenshots/94101/shot_1293655299.png' />
+    </div>
   {# Install Swiper.js en js #}
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
 {% endblock %}
