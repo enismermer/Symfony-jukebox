@@ -2,28 +2,21 @@
 
 {% block title %}Hello FolioController!{% endblock %}
 
-{% block header %} Wesh les gars !! {% endblock %}
 {% block body %}
 <style>
-    .example-wrapper { 
-        margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; 
-    }
-    .example-wrapper code { 
-        background: #F5F5F5; padding: 2px 6px; 
+    body {
+        background-color: #0F00A5;
     }
     
     img {
-        width: 30%;
+        margin-left: 20%;
+        width: 60%;
     }
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-    <img src="../assets/img/Shadow.png" alt="Shadow the Hedgehog">
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/testSymfony/src/Controller/FolioController.php'|file_link(0) }}">src/Controller/FolioController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/testSymfony/templates/folio/index.html.twig'|file_link(0) }}">templates/folio/index.html.twig</a></code></li>
-    </ul>
+    <h1>
+        <img src="../assets/img/font-welcome-bttf.png" alt="font welcome bttf">
+    </h1>
 </div>
 {% endblock %}

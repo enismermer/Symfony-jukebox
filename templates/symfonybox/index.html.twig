@@ -2,114 +2,240 @@
 
 {% block title %}Jukebox SymfonyBox{% endblock %}
 {% block body %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
-<script src="{{asset ('assets/js/box.js')}}" defer></script>
-<style>
-    html,
-    body {
-      position: relative;
-      height: 100%;
-    }
+{#                  Install Swiper : css             #}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 
-    body {
-      background: #A600FF;
-      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-      font-size: 14px;
-      color: #fff;
-      margin: 0;
-      padding: 0;
-    }
+{#                  Install Font Awesome             #}
+<script src="https://kit.fontawesome.com/58a4fdd9c7.js" crossorigin="anonymous"></script>
+
+{#                  Install Swiper : js              #}
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+{#                  Externaliser box.js              #}
+<script src="../assets/js/box.js" defer></script>
+
+<style>
 
     /****************** Titre principal ******************/
-    h1 {text-align:center;}
+    h1 {
+        text-align:left; 
+        padding-top: 10px;
+        margin-left: 15px;
+    }
 
     /*** Icone à gauche et à droite du titre principal ***/
     .icon-music {
-        width: 1.5em;
-        height: 1.5em;
+        width: 1.0em;
+        height: 1.0em;
         margin: 0em;
     }
 
-    /******************** Connexion ********************/
+    .d-flex {
+        margin-top: -3%;
+    }
+
+    /********************* Header **********************/
+    .header {
+        background-color: black;
+        padding-bottom: 10px;
+    }
+
+    /********************** Logo ***********************/
+    .logo {
+        width: 28%;
+    }
+
+    /****************** Playlist *******************/
+    .playlist a {
+        text-decoration: none;
+        color: #FFFFFF;
+        margin-left: 1.5em;
+        float: right;
+    }
+
+    /****************** Connexion ******************/
     .login a {
         text-decoration: none;
         color: #FFFFFF;
-        margin-left: 3em;
-        float: left;
+        margin-left: 1.5em;
+        float: right;
     }
 
     /***************** Inscription *****************/
     .register a {
-        margin-left: 3.6em;
-        float: left;
+        text-decoration: none;
+        margin-right: 2em;
+        float: right;
+        color: #FFFFFF;
+        margin-left: 1.5em;
+    }
+
+    /***** Icon star *****/
+    .fa-regular {
+        font-size: 3em;
+    }
+
+    .fa-regular:hover {
+        color: #FFFF01;
+        font-size: 3em;
+    }
+
+    html,
+    body {
+        position: relative;
+        height: 100%;
+    }
+    
+    body {
+        background: #131111;
+        font-family: 'Figtree', Arial, sans-serif;
+        font-size: 14px;
+        color: #fff;
+        margin: 0;
+        padding: 0;
     }
 
     /************************************************
                     Gestion Swiper.js 
     *************************************************/
-    swiper-container {
-      width: 100%;
-      height: 100%;
+    .swiper {
+        width: 85%;
+        padding-top: 50px;
+        padding-bottom: 50px;
     }
 
-    swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 450px;
+        height: 450px;
     }
 
-    swiper-slide img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    h2, h6 {
+        text-align: center;
+    }
+
+    /*** Images générales ***/
+    .swiper-slide img {
+        display: block;
+        width: 100%;
+    }
+
+    /*** Power of the love ***/
+    .swiper-slide .potl {
+        display: block;
+        width: 100%;
+        height: 20em;
+    }
+
+    /********* JUL *********/
+    .swiper-slide .jul {
+        display: block;
+        width: 100%;
+        height: 23em;
+    }
+
+    /******** MERO ********/
+    .swiper-slide .mero {
+        display: block;
+        width: 100%;
+        height: 20em;
+    }
+
+    /******** MRC ********/
+    .swiper-slide .mrc {
+        display: block;
+        width: 100%;
+        height: 21em;
+    }
+
+    .swiper-slide audio {
+        width: 100%;
     }
 
     /***************** Vinyle animation ******************/
     .record-container {
-    display: inline-block;
-    overflow: hidden;
-    width: 400px; height: 300px;
-    border-radius: 10px;
-    box-shadow: 0 6px #99907e;
-    background: #b5ac9a;
-    margin-left: 27%;
-    visibility: hidden;
+        display: inline-block;
+        overflow: hidden;
+        border-radius: 10%;
+        margin-left: 35%;
+        visibility: hidden;
+        animation-name: example;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes example {
+        0%   {transform: rotate(0deg)}
+        100% {transform: rotate(360deg)}
+    }
+
+    /******************** Footer ******************/
+    footer {
+        text-align: center;
+        padding: 1em;
+    }
+    
+    footer p img {
+        width: 35em;
     }
 </style>
 
-<div>
+<div class="header">
     <h1>
         <img src="../assets/img/icon-music.webp" alt="icon music" class="icon-music">
-        SymfonyBox
-        <img src="../assets/img/icon-music.webp" alt="icon music" class="icon-music">
+        <img src="../assets/img/font-symfonybox-bttf.png" alt="font bttf symfonybox" class="logo">
     </h1>
 
-    <h3 class="login">
-        <a href="http://127.0.0.1:8000/login">Connexion</a>
-    </h3>
-    <h4 class="register">
-        <a href="http://127.0.0.1:8000/register">Inscription</a>
-    </h4>
+    <div class="d-flex justify-content-end">
+        <h4 class="playlist">
+            <a href="http://127.0.0.1:8000/symfonybox">Playlist</a>
+        </h4>
+        <h4 class="login">
+            <a href="http://127.0.0.1:8000/login">Connexion</a>
+        </h4>
+        <h4 class="register">
+            <a href="http://127.0.0.1:8000/register">Inscription</a>
+        </h4>
+    </div>
 </div>
 
-<br><br>
+<div class="swiper">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+    {% for song in musics %}
+    <div class="swiper-slide">
+        <h2>{{ song.title }}</h2>
 
-    <swiper-container class="mySwiper" pagination="true">
-        <swiper-slide><video src="./assets/Jukebox/The-Power-of-Love-(Back to the Future).mp4" width="1200" height="600" controls loop></video></swiper-slide>
-        <swiper-slide><video src="./assets/Jukebox/Jul - Briganté [Clip Officiel].mp4" width="1200" height="600" controls loop></video></swiper-slide>
-        <swiper-slide><video src="./assets/Jukebox/MRC - On est là (Clip officiel).mp4" width="1200" height="600" controls loop></video></swiper-slide>
-        <swiper-slide><video src="./assets/Jukebox/Jack Sparrow - Tribute.mp4" width="1200" height="600" controls loop></video></swiper-slide>
-        <swiper-slide><video src="./assets/Jukebox/Eminem - Lose Yourself [HD].mp4" width="1200" height="600" controls loop></video></swiper-slide>
-        <swiper-slide><video src="./assets/Jukebox/MERO - Baller los (Official Video).mp4" width="1200" height="600" controls loop></video></swiper-slide>
-    </swiper-container>
+        <h6>{{ song.singer }}</h3>
+        <i onclick="favoris()" class="fa-regular fa-star"></i>
+
+        <img src="{{ asset('uploads/'~ song.image ~'') }}" alt="" class="potl" />
+        <br>
+        <audio src="{{ asset('uploads/'~ song.Audio ~'') }}" controls></audio>
+    </div>
+    {% endfor %}
+  </div>
+  <br>
+  <!-- If we need pagination -->
+  <div class="swiper-pagination"></div>
+
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+</div>
+
+    <br><br>
 
     <div class='record-container'>
-        <img src='https://dribbble.s3.amazonaws.com/users/2009/screenshots/94101/shot_1293655299.png' />
+        <img src="../assets/img/shot_1293655299-removebg-preview.png" />
     </div>
-  {# Install Swiper.js en js #}
-  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+
+    <br><br>
+
+    <footer>
+        <p><img src="../assets/img/font-copyright-bttf.png" alt="font bttf copyright"></p>
+    </footer>
 {% endblock %}

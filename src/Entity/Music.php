@@ -25,6 +25,9 @@ class Music
     #[ORM\ManyToOne(inversedBy: 'music')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Audio = null;
     
     
     public function getId(): ?int
@@ -81,6 +84,18 @@ class Music
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getAudio(): ?string
+    {
+        return $this->Audio;
+    }
+
+    public function setAudio(string $Audio): self
+    {
+        $this->Audio = $Audio;
 
         return $this;
     }
