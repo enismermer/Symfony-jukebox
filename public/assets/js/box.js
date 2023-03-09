@@ -70,22 +70,3 @@ for (let i = 0; i < audio.length; i++) {
         vinyle.style.visibility = "hidden";
     }
 }
-
-
-
-
-/************************************************
-        Activation / Désactivation : étoile
-************************************************/
-let starRegular = document.querySelector(".fa-regular");
-let starSolid = document.querySelector(".fa-solid");
-
-starRegular.addEventListener('click', favoris);
-
-function favoris(starRegular) {
-    if (starRegular) {
-        document.querySelector(".regular").innerHTML = "<i class='fa-solid fa-star'></i>"
-        document.querySelector(".fa-solid").style.color = "#FFFF01";
-        document.querySelector(".fa-solid").style.fontSize = "3em";
-    }
-}

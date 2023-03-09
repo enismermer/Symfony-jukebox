@@ -27,7 +27,19 @@
         background-image: url('../assets/img/cafe-80.jpg');
         background-color: #cccccc;
         background-repeat: no-repeat;
-        background-size: 100% 150%;
+        background-size: 100% 120%;
+    }
+
+    .conditions-mdp {
+        margin: 0 57% 0 20.5%;
+        border: 3px solid white;
+        border-radius: 10px;
+        background-color: #000A44;
+    }
+
+    .conditions-mdp ul {
+        color: #FF7800;
+        font-weight: bold;
     }
 </style>
 
@@ -35,5 +47,14 @@
     <h1><img src="../assets/img/font-register-bttf.png" alt="font bttf"></h1>
     <br><br>
     {{ form(form) }}
+</div>
+<div class="conditions-mdp">
+    <ul>
+        <li>Au moins 1 minuscule</li>
+        <li>Au moins 1 majuscule</li>
+        <li>Au moins 1 chiffre</li>
+        <li>Au moins 1 signe de ponctuation</li>
+        <li>8 caractères au minimum</li>
+    </ul>
 </div>
 {% endblock %}
