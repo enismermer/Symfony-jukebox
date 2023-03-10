@@ -54,7 +54,7 @@
     }
 
     /****************** Connexion ******************/
-    .login a {
+    .logout a {
         text-decoration: none;
         color: #FFFFFF;
         margin-left: 1.5em;
@@ -68,6 +68,9 @@
         float: right;
         color: #FFFFFF;
         margin-left: 1.5em;
+        border: 2px solid white;
+        padding: 5px;
+        margin-top: -6px;
     }
 
     html,
@@ -176,18 +179,15 @@
 <div class="header">
     <h1>
         <img src="../assets/img/icon-music.webp" alt="icon music" class="icon-music">
-        <img src="../assets/img/font-symfonybox-bttf.png" alt="font bttf symfonybox" class="logo">
+        <a href="http://127.0.0.1:8000/symfonybox"><img src="../assets/img/font-symfonybox-bttf.png" alt="font bttf symfonybox" class="logo"></a>
     </h1>
 
     <div class="d-flex justify-content-end">
-        <h4 class="playlist">
-            <a href="http://127.0.0.1:8000/symfonybox">Playlist</a>
-        </h4>
-        <h4 class="login">
-            <a href="http://127.0.0.1:8000/login">Connexion</a>
+        <h4 class="logout">
+            <a href="http://127.0.0.1:8000/logout" title="Logout">Déconnexion</a>
         </h4>
         <h4 class="register">
-            <a href="http://127.0.0.1:8000/register">Inscription</a>
+            <a href="http://127.0.0.1:8000/register" title="Register">Inscription</a>
         </h4>
     </div>
 </div>

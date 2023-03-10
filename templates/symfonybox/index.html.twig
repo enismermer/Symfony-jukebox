@@ -54,7 +54,7 @@
     }
 
     /****************** Connexion ******************/
-    .login a {
+    .logout a {
         text-decoration: none;
         color: #FFFFFF;
         margin-left: 1.5em;
@@ -68,6 +68,9 @@
         float: right;
         color: #FFFFFF;
         margin-left: 1.5em;
+        border: 2px solid white;
+        padding: 5px;
+        margin-top: -6px;
     }
 
     html,
@@ -181,13 +184,13 @@
 
     <div class="d-flex justify-content-end">
         <h4 class="playlist">
-            <a href="http://127.0.0.1:8000/symfonybox/favoris">Playlist</a>
+            <a href="http://127.0.0.1:8000/symfonybox/favoris" title="Favoris">Playlist</a>
         </h4>
-        <h4 class="login">
-            <a href="http://127.0.0.1:8000/login">Connexion</a>
+        <h4 class="logout">
+            <a href="http://127.0.0.1:8000/logout" title="Logout">Déconnexion</a>
         </h4>
         <h4 class="register">
-            <a href="http://127.0.0.1:8000/register">Inscription</a>
+            <a href="http://127.0.0.1:8000/register" title="Register">Inscription</a>
         </h4>
     </div>
 </div>
@@ -201,22 +204,22 @@
         <h2>{{ song.title }}</h2>
 
         <h6>{{ song.singer }}</h6>
+
         <div class="txt-red" style="color:red">
             {% if is_granted("ROLE_USER") %}
                 {% for favoris in song.favoris %}
                     {% if favoris.id == app.user.id %}
                         <a href="{{path('retrait_favoris', {'id': song.id})}}"><i class="fas fa-heart" style="font-size:2em; color:red; position:absolute"></i></a>
                     {% else %}
-                        <a href="{{path('ajout_favoris', {'id': song.id})}}"><i class="far fa-heart" style="font-size:2em; position:absolute"></i></a>
+                        <a href="{{path('ajout_favoris', {'id': song.id})}}"><i class="far fa-heart" style="font-size:2em;"></i></a>
                     {% endif %}
                 {% else %}
                     <a href="{{path('ajout_favoris', {'id': song.id})}}"><i class="far fa-heart" style="font-size:2em; position:absolute"></i></a>
                 {% endfor %}
             {% else %}
-                <i class="far fa-heart" style="font-size:2em; position:absolute"></i>
+                <i class="far fa-heart" style="font-size:2em;"></i>
             {% endif %}
         </div>
-
         <img src="{{ asset('uploads/'~ song.image ~'') }}" alt="" class="potl" />
         <br>
         <audio src="{{ asset('uploads/'~ song.Audio ~'') }}" controls></audio>
