@@ -19,7 +19,7 @@ class SymfonyboxController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/symfonybox', name: 'app_symfonybox')]
+    #[Route('/', name: 'app_symfonybox')]
     public function index(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Music::class)->findAll();

@@ -46,7 +46,23 @@
 <div class="example-wrapper">
     <h1><img src="../assets/img/font-register-bttf.png" alt="font bttf"></h1>
     <br><br>
-    {{ form(form) }}
+    {# {{ form(form) }} #}
+    {{form_start(form)}}
+
+        <div class="mt-3">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email) }}
+        </div>
+        
+        <div class="mt-3">
+            {{ form_label(form.password) }}
+            {{ form_widget(form.password) }}
+            <small>{{ form_errors(form.password) }}</small>
+        </div>
+
+            {{ form_row(form.Submit, { 'label': "S'inscrire"}) }}
+
+    {{form_end(form)}}
 </div>
 <div class="conditions-mdp">
     <ul>

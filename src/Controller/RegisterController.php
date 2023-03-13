@@ -47,7 +47,7 @@ class RegisterController extends AbstractController
             $entityManager->flush();
 
             // on modifie la route de la redirection (on prend le NAME de la page)
-            return $this->redirectToRoute('app_folio');
+            return $this->redirectToRoute('app_login');
         }
         
         return $this->render('register/index.html.twig', [
