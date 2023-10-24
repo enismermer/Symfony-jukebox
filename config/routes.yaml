@@ -3,6 +3,39 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+# Page Accueil
+home:
+    path: '/'
+    controller: App\Controller\SymfonyboxController::index
+
+# Page Dashboard
 dashboard:
     path: /admin
     controller: App\Controller\Admin\DashboardController::index
+
+# Page Inscription
+register:
+    path: '/register'
+    controller: 'App\Controller\RegisterController::index'
+    
+# Page Connexion
+login:
+    path: '/login'
+    controller: 'App\Controller\SecurityController::login'
+
+# Déconnexion
+logout:
+    path: '/logout'
+    controller: 'App\Controller\SecurityController::logout'
+    
+# Page Favoris
+favoris:
+    path: '/favoris'
+    controller: 'App\Controller\SymfonyboxController::favoris'
+
+# Page Rating Edit
+app_rating_form_edit:
+    path: '/rating-form/edit/{id}'
+    controller: App\Controller\RatingController::edit
+    methods: ['GET', 'POST']

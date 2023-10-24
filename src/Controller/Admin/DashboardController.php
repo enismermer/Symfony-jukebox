@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Category;
 use App\Entity\Joke;
 use App\Entity\Music;
+use App\Entity\Rating;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -40,15 +41,16 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('TestSymfony');
+            ->setTitle('Symfony_Jukebox');
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Jokes', 'fa-solid fa-face-grin-tongue-wink', Joke::class);
-        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
+        // yield MenuItem::linkToCrud('Jokes', 'fa-solid fa-face-grin-tongue-wink', Joke::class);
         yield MenuItem::linkToCrud('Categories', 'fa-solid fa-bars', Category::class);
         yield MenuItem::linkToCrud('Musics', 'fa-solid fa-music', Music::class);
+        yield MenuItem::linkToCrud('Ratings', 'fas fa-heart', Rating::class);
+        yield MenuItem::linkToCrud('Users', 'fas fa-user', User::class);
     }
 }

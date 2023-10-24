@@ -39,6 +39,15 @@ class MusicRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByTitle($title)
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.title LIKE :title')
+            ->setParameter('title', '%'.$title.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Music[] Returns an array of Music objects
 //     */

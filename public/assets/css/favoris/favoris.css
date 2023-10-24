@@ -1,0 +1,144 @@
+/****************** Titre principal ******************/
+h1 {
+    text-align:left; 
+    padding-top: 10px;
+    margin-left: 15px;
+}
+
+/*** Icone à gauche et à droite du titre principal ***/
+.icon-music {
+    width: 1.0em;
+    height: 1.0em;
+    margin: 0em;
+}
+
+.d-flex {
+    margin-top: -3%;
+}
+
+/********************* Header **********************/
+.header {
+    background-color: black;
+    padding-bottom: 13px;
+}
+
+/********************** Logo ***********************/
+.logo {
+    width: 28%;
+}
+
+/****************** Playlist *******************/
+.playlist a {
+    text-decoration: none;
+    color: #FFFFFF;
+    margin-left: 1.5em;
+    float: right;
+}
+
+/****************** Connexion ******************/
+.logout a {
+    text-decoration: none;
+    color: #FFFFFF;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    float: right;
+}
+
+/***************** Inscription *****************/
+.register a {
+    text-decoration: none;
+    margin-right: 2em;
+    float: right;
+    color: #FFFFFF;
+    margin-left: 1.5em;
+    border: 2px solid white;
+    padding: 5px;
+    margin-top: -6px;
+}
+
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    background: #000A44;
+    font-family: 'Figtree', Arial, sans-serif;
+    font-size: 14px;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.retour {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 1.3em;
+}
+
+.retour:hover {
+    color: white;
+}
+
+/************************************************
+                Gestion Swiper.js 
+*************************************************/
+.swiper {
+    width: 85%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 450px;
+    height: 450px;
+}
+
+h2, h6 {
+    text-align: center;
+}
+
+/*** Images générales ***/
+.swiper-slide .image {
+    display: block;
+    width: 100%;
+    height: 20em;
+}
+
+.swiper-slide audio {
+    width: 100%;
+}
+
+/***************** Vinyle animation ******************/
+.record-container {
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 10%;
+    margin: 0 35.5%;
+    visibility: hidden;
+    animation-name: disque;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes disque {
+    0%   {transform: rotate(0deg)}
+    100% {transform: rotate(360deg)}
+}
+
+/******************** Footer ******************/
+footer {
+    text-align: center;
+    background-color: black;
+    padding: 2em;
+}
+
+footer p img {
+    width: 35em;
+}

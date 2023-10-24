@@ -1,36 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion - Symfonybox{% endblock %}
+{% block title %}Connexion - Symfony_Jukebox{% endblock %}
 
 {% block body %}
-    {% if error %}
-            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-<style>
-    body {
-        text-align: center;
-        color: white;
-        background-image: url('./assets/img/door-music.jpg');
-        background-size: 100%;
-    }
+<link href="{{ asset('./assets/css/login/login.css') }}" rel="stylesheet"/>
 
-    form {
-        width: 30%;
-        margin-left: 35%;
-    }
-    
-</style>
+    {% if error %}
+            <div class="error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
     <img src="../assets/img/font-login-bttf.png" alt="font bttf" />
 
-    <form action="{{ path('app_login') }}" method="post">
-        <label for="inputEmail">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-        <label for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-        <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}">
-        {# If you want to control the URL the user is redirected to on success
-        <input type="hidden" name="_target_path" value="/account"> #}
-        <button type="submit">login</button>
-    </form>
+    <div class="container">
+        <form action="{{ path('app_login') }}" method="post">
+            <div class="mb-3">
+                <label for="inputEmail">Email :</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+            </div>
+            <div class="mb-3">
+                <label for="inputPassword">Mot de passe :</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            </div>
+            <input type="hidden" name="_csrf_token"
+            value="{{ csrf_token('authenticate') }}">
+            {# If you want to control the URL the user is redirected to on success
+            <input type="hidden" name="_target_path" value="/account"> #}
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+        </form>
+    </div>
 {% endblock %}

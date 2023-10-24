@@ -1,212 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}SymfonyBox{% endblock %}
+{% block title %}Favoris - SymfonyBox{% endblock %}
+
 {% block body %}
-{#                  Install Swiper : css             #}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
-
-{#                  Install Font Awesome             #}
-<script src="https://kit.fontawesome.com/58a4fdd9c7.js" crossorigin="anonymous"></script>
-
-{#                  Install Swiper : js              #}
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-
-{#                  Externaliser box.js              #}
-<script src="../assets/js/box.js" defer></script>
-
-<style>
-
-    /****************** Titre principal ******************/
-    h1 {
-        text-align:left; 
-        padding-top: 10px;
-        margin-left: 15px;
-    }
-
-    /*** Icone à gauche et à droite du titre principal ***/
-    .icon-music {
-        width: 1.0em;
-        height: 1.0em;
-        margin: 0em;
-    }
-
-    .d-flex {
-        margin-top: -3%;
-    }
-
-    /********************* Header **********************/
-    .header {
-        background-color: black;
-        padding-bottom: 13px;
-    }
-
-    /********************** Logo ***********************/
-    .logo {
-        width: 28%;
-    }
-
-    /****************** Playlist *******************/
-    .playlist a {
-        text-decoration: none;
-        color: #FFFFFF;
-        margin-left: 1.5em;
-        float: right;
-    }
-
-    /****************** Connexion ******************/
-    .logout a {
-        text-decoration: none;
-        color: #FFFFFF;
-        margin-left: 1.5em;
-        float: right;
-    }
-
-    /***************** Inscription *****************/
-    .register a {
-        text-decoration: none;
-        margin-right: 2em;
-        float: right;
-        color: #FFFFFF;
-        margin-left: 1.5em;
-        border: 2px solid white;
-        padding: 5px;
-        margin-top: -6px;
-    }
-
-    html,
-    body {
-        position: relative;
-        height: 100%;
-    }
-    
-    body {
-        background: #000A44;
-        font-family: 'Figtree', Arial, sans-serif;
-        font-size: 14px;
-        color: #fff;
-        margin: 0;
-        padding: 0;
-    }
-
-    /************************************************
-                    Gestion Swiper.js 
-    *************************************************/
-    .swiper {
-        width: 85%;
-        padding-top: 50px;
-        padding-bottom: 50px;
-    }
-
-    .swiper-slide {
-        background-position: center;
-        background-size: cover;
-        width: 450px;
-        height: 450px;
-    }
-
-    h2, h6 {
-        text-align: center;
-    }
-
-    /*** Images générales ***/
-    .swiper-slide img {
-        display: block;
-        width: 100%;
-    }
-
-    /*** Power of the love ***/
-    .swiper-slide .potl {
-        display: block;
-        width: 100%;
-        height: 20em;
-    }
-
-    /********* JUL *********/
-    .swiper-slide .jul {
-        display: block;
-        width: 100%;
-        height: 23em;
-    }
-
-    /******** MERO ********/
-    .swiper-slide .mero {
-        display: block;
-        width: 100%;
-        height: 20em;
-    }
-
-    /******** MRC ********/
-    .swiper-slide .mrc {
-        display: block;
-        width: 100%;
-        height: 21em;
-    }
-
-    .swiper-slide audio {
-        width: 100%;
-    }
-
-    /***************** Vinyle animation ******************/
-    .record-container {
-        display: inline-block;
-        overflow: hidden;
-        border-radius: 10%;
-        margin-left: 35%;
-        visibility: hidden;
-        animation-name: example;
-        animation-duration: 1.5s;
-        animation-iteration-count: infinite;
-    }
-
-    @keyframes example {
-        0%   {transform: rotate(0deg)}
-        100% {transform: rotate(360deg)}
-    }
-
-    /******************** Footer ******************/
-    footer {
-        text-align: center;
-        padding: 1em;
-        background-color: black;
-        padding: 2em;
-    }
-    
-    footer p img {
-        width: 35em;
-    }
-</style>
+<link href="{{ asset('./assets/css/favoris/favoris.css') }}" rel="stylesheet"/>
 
 <div class="header">
     <h1>
         <img src="../assets/img/icon-music.webp" alt="icon music" class="icon-music">
-        <a href="http://127.0.0.1:8000"><img src="../assets/img/font-symfonybox-bttf.png" alt="font bttf symfonybox" class="logo"></a>
+        <a href="{{ path('home')}}"><img src="../assets/img/font-symfonybox-bttf.png" alt="font bttf symfonybox" class="logo"></a>
     </h1>
 
     <div class="d-flex justify-content-end">
+        {# L'utilisateur connecté à un lien Déconnexion #}
         <h4 class="logout">
-            <a href="http://127.0.0.1:8000/logout" title="Logout">Déconnexion</a>
-        </h4>
-        <h4 class="register">
-            <a href="http://127.0.0.1:8000/register" title="Register">Inscription</a>
+            <a href="{{ path('logout')}}" title="Logout">Déconnexion</a>
         </h4>
     </div>
 </div>
+
+{# J'affiche le lien Retour pour revenir à la page d'accueil #}
+<a href="{{ path('home')}}" class="retour">
+    <img src="../assets/img/icon-back.png" alt="back" />
+    Retour
+</a>
 
 <div class="swiper">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
         <!-- Slides -->
-        {% for favori in favoris %}
+        {% for favori in favoris %} {# pour favori de chaque favoris #}
         <div class="swiper-slide">
                 
-            <h2>{{ favori.title }}</h2>
+            <h2>{{ favori.title }}</h2> {# J'affiche le titre du favori #}
 
-            <h6>{{ favori.singer }}</h6>
+            <h6>{{ favori.singer }}</h6> {# J'affiche le titre du favori #}
 
 
-            <img src="{{ asset('uploads/'~ favori.image ~'') }}" alt="" class="potl" />
+            <img src="{{ asset('uploads/'~ favori.image ~'') }}" alt="image music" class="image" /> {# J'affiche l'image du favori #}
             <br>
-            <audio src="{{ asset('uploads/'~ favori.Audio ~'') }}" controls></audio>
+            <audio src="{{ asset('uploads/'~ favori.audio ~'') }}" controls></audio> {# J'affiche l'audio du favori' #}
         </div>
     {% endfor %}
    </div>

@@ -1,0 +1,18 @@
+body {
+    background: url('../../img/star-rating-background.png');
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 1em;
+}
+
+.form {
+    align-items: center;
+    justify-content: center;
+    margin: 5% 20%;
+    background: #000A44;
+    padding: 2em 5em 2em 5em;
+}

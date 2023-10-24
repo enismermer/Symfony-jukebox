@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notes et évaluations - Symfony_Jukebox{% endblock %}
+
+{% block body %}
+<link href="{{ asset('./assets/css/rating/form.css') }}" rel="stylesheet"/>
+
+<div class="form">
+
+    <h1>Noter la musique</h1>
+
+        {{ form_start(form) }}
+
+        <div class="mb-3">
+            {{ form_row(form.music) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(form.rating,) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(form.comment) }}
+        </div>
+
+        <div class="mb-3 d-flex justify-content-center">
+            {{ form_row(form.Submit) }}
+        </div>
+        {{ form_end(form) }}
+</div>
+{% endblock %}

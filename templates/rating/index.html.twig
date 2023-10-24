@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ratings - SymfonyBox{% endblock %}
+{% block body %}
+<link href="{{ asset('./assets/css/rating/rating.css') }}" rel="stylesheet"/>
+
+<div class="header">
+    <h1>
+        <img src="../assets/img/icon-music.webp" alt="icon music" class="icon-music">
+        <a href="{{ path('home')}}"><img src="../assets/img/font-symfonybox-bttf.png" alt="font bttf symfonybox" class="logo"></a>
+    </h1>
+
+    <div class="d-flex justify-content-end">
+        {# L'utilisateur connecté à un lien Déconnexion #}
+        <h4 class="logout">
+            <a href="{{ path('logout')}}" title="Logout">Déconnexion</a>
+        </h4>
+    </div>
+</div>
+
+{# J'affiche le lien Retour pour revenir à la page d'accueil #}
+<a href="{{ path('home')}}" class="retour">
+    <img src="../assets/img/icon-back.png" alt="back" />
+    Retour
+</a>
+
+    {# Si l'utilisateur connecté a un ROLE_USER, 
+    j'affiche le logo user et le nom de l'email connecté #}
+    {% if is_granted('ROLE_USER') %}
+        <div class="user d-flex align-items-center justify-content-end">
+            <img src="{{ asset('assets/img/icon-user.png') }}" alt="User Icon" class="img-fluid">
+            <p class="align-self-center">{{ userEmail }}</p>
+        </div>
+    {% endif %}
+
+    {# J'affiche le lien du formulaire de notes et évaluations #}
+    <div class="form-rating">
+        <a href="{{ path('app_rating_form') }}">
+            <button class="btn btn-secondary">Évaluer</button>
+        </a>
+    </div>
+
+    {# J'affiche le nombre d'évaluations #}
+    <div class="title">
+        <h2>{{ numberOfRatings }} évaluations</h2>
+    </div>
+
+    {# pour évaluation de chaque évaluations #}
+    {% for rating in ratings %}
+        <div class="presentation">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="etoile-jaune">
+                    {# J'affiche le nombre d'étoiles évalués sur cette chanson #}
+                    {% for i in 1..rating.rating %}
+                        <i class="bi bi-star-fill" style="color:#FAE729"></i>
+                    {% endfor %}
+                </div>
+
+                <p style="font-size:1.5em;">{{ rating.user_email }}</p> {# J'affiche l'email de l'utilisateur qui a évalué sur cette chanson #}
+
+                <p>{{ rating.updated_at|date('d/m/Y H:i:s') }}</p> {# J'affiche la date créée au format français pour l'évaluation #}
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{ asset('uploads/'~ rating.music_image ~'') }}" alt="Music Image" class="img-fluid"> {# J'affiche l'image de la musique évaluée #}
+                    <p>{{ rating.music_title }}</p> {# J'affiche le titre de la musique évaluée #}
+                </div>
+                <div class="col-md-8">
+                    <p>{{ rating.comment }}</p> {# J'affiche le commentaire de l'évaluation #}
+                </div>
+                {% if app.user and app.user.email == rating.user_email %}
+                    <div class="d-flex justify-content-between mx-2 mt-1 mb-4">
+                        <a href="{{ path('app_rating_edit', {'id': rating.id}) }}" class="btn btn-warning">Modifier</a>
+                        <a href="{{ path('app_rating_delete', {'id': rating.id}) }}" class="btn btn-danger">Supprimer</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+    <footer>
+        <p><img src="../assets/img/font-copyright-bttf.png" alt="font bttf copyright"></p>
+    </footer>
+{% endblock %}

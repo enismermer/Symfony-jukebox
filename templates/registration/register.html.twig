@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription - Symfony_Jukebox{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <link href="{{ asset('./assets/css/register/register.css') }}" rel="stylesheet"/>
+
+<div class="example-wrapper">
+    <h1><img src="../assets/img/font-register-bttf.png" alt="font bttf"></h1>
+    
+    <div class="form">
+        {# {{ form(form) }} #}
+        {{form_start(registrationForm)}}
+
+            <div class="mt-3">
+                {{ form_label(registrationForm.email) }}
+                {{ form_widget(registrationForm.email) }}
+                {% if form_errors(registrationForm.email) is not empty %}
+                    <div class="div-error">
+                        <small class="error-message">
+                            {{ form_errors(registrationForm.email) }}
+                        </small>
+                    </div>
+                {% endif %}
+
+                {# Afficher le message d'erreur ajouté depuis le contrôleur #}
+                {% if error_message is defined %}
+                    <div class="div-error">
+                        <small class="error-message">
+                            {{ error_message }}
+                        </small>
+                    </div>
+                {% endif %}
+
+            </div>
+            
+            <div class="mt-3">
+                {{ form_label(registrationForm.plainPassword) }}
+                {{ form_widget(registrationForm.plainPassword) }}
+                {% if form_errors(registrationForm.plainPassword) is not empty %}
+                    <div class="div-error">
+                        <small {% if form_errors(registrationForm.plainPassword) %} class="error-message"{% endif %}>
+                                {{ form_errors(registrationForm.plainPassword) }}
+                        </small>
+                    </div>
+                {% endif %}
+            </div>
+
+            {{ form_row(registrationForm.Submit) }}
+
+        {{form_end(registrationForm)}}
+    </div>
+</div>
+
+<script>
+    /**********************************************************
+        Gestion du message d'erreur dans l'inscription
+    **********************************************************/
+   
+    // je sélectionne tous les <ul> qui sont présents dans cette page
+    const uls = document.querySelectorAll('ul');
+
+    // Vérifier s'il y a au moins deux éléments ul
+    if (uls.length) {
+        // Parcourir les deux premiers éléments ul
+        for (let i = 0; i < uls.length; i++) {
+            const ul = uls[i];
+            const textContent = ul.textContent;
+            ul.replaceWith(document.createTextNode(textContent));
+        }
+    }
+</script>
+
+{% endblock %}

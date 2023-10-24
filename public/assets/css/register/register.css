@@ -1,0 +1,73 @@
+:root {
+    --bs-danger-bg-subtle: #f8d7da;
+}
+
+.example-wrapper { 
+    margin: 2em auto;
+    max-width: 800px;
+    width: 95%; 
+    font: 18px/1.5 sans-serif; 
+    color: white;
+}
+
+.example-wrapper h1 {
+    color: white;
+    font-weight: bold;
+    width: 22em;
+}
+
+.example-wrapper code { 
+    background: #F5F5F5; 
+    padding: 2px 6px; 
+}
+
+body {
+    background-image: url('../../img/cafe-80.jpg');
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-size: 100% 120%;
+}
+
+.form {
+    margin-left: 6em;
+    margin-top: 2em;
+    justify-content: center;
+    align-items: center;
+}
+
+.form label {
+    color: #FAA30D;
+    font-weight: bold;
+}
+
+form .mt-3 {
+    margin-left: 8em;
+}
+
+form input[type=email], form input[type=password] {
+    width: 60%;
+}
+
+.form button[type=Submit] {
+    margin-left: 16.5em;
+    margin-top: 1em;
+}
+
+.btn {
+    background-color: #000A44;
+    border-color: #000A44;
+}
+
+.div-error {
+    margin-top: 1px;
+    font-size: 0.9em;
+    width: 60%;
+    background-color: var(--bs-danger-bg-subtle);
+    padding: 1px 13px;
+    border-radius: 5px;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}

@@ -1,0 +1,170 @@
+/****************** Titre principal ******************/
+h1 {
+    text-align:left; 
+    padding-top: 10px;
+    margin-left: 15px;
+}
+
+/*** Icone à gauche et à droite du titre principal ***/
+.icon-music {
+    width: 1.0em;
+    height: 1.0em;
+    margin: 0em;
+}
+
+.d-flex {
+    margin-top: -3%;
+}
+
+/********************* Header **********************/
+.header {
+    background-color: black;
+    padding-bottom: 13px;
+}
+
+/********************** Logo ***********************/
+.logo {
+    width: 28%;
+}
+
+/****************** Playlist *******************/
+.playlist a {
+    text-decoration: none;
+    color: #FFFFFF;
+    margin-left: 1.5em;
+    float: right;
+}
+
+/****************** Connexion ******************/
+.logout a {
+    text-decoration: none;
+    color: #FFFFFF;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    float: right;
+}
+
+/***************** Inscription *****************/
+.register a {
+    text-decoration: none;
+    margin-right: 2em;
+    float: right;
+    color: #FFFFFF;
+    margin-left: 1.5em;
+    border: 2px solid white;
+    padding: 5px;
+    margin-top: -6px;
+}
+
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    background: #000A44;
+    font-family: 'Figtree', Arial, sans-serif;
+    font-size: 14px;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.retour {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 1.3em;
+}
+
+.retour:hover {
+    color: white;
+}
+
+.form-rating {
+    margin: 30px 0 0 140px;
+}
+
+.title {
+    padding: 3px;
+    background: black;
+    margin: 2% 10%;
+    align-items: center;
+    justify-content: center;
+}
+
+.title h2 {
+    text-align: center;
+}
+
+.user {
+    margin-right: 20px;
+}
+
+/**************** Présentation générale ***************/
+.presentation {
+    background: black;
+    margin: 4% 10%;
+    padding-right: 20px;
+}
+
+/********** Présentation : Etoile, Email, Date ********/
+.etoile-jaune {
+    padding: 20px;
+}
+
+/**************** Présentation : Image ****************/
+.presentation img {
+    width: 20em;
+}
+
+/************** Présentation : Etoile jaune ***********/
+.etoile-jaune i {
+    padding: 10px;
+    font-size: 2em;
+}
+
+/*********** Présentation : Image et titre ***********/
+.col-md-4 {
+    text-align: center;
+}
+
+/***** Présentation : Titre en dessous de l'image *****/
+.col-md-4 p {
+    font-size: 1.5em;
+}
+
+.col-md-8 {
+    font-size: 1.2em;
+}
+
+/***************** Vinyle animation ******************/
+.record-container {
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 10%;
+    margin: 0 35.5%;
+    visibility: hidden;
+    animation-name: disque;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes disque {
+    0%   {transform: rotate(0deg)}
+    100% {transform: rotate(360deg)}
+}
+
+/******************** Footer ******************/
+footer {
+    text-align: center;
+    background-color: black;
+    padding: 2em;
+}
+
+footer p img {
+    width: 35em;
+}

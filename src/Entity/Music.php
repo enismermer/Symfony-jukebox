@@ -27,16 +27,20 @@ class Music
     #[ORM\ManyToOne(inversedBy: 'music')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
-
+    
     #[ORM\Column(length: 255)]
-    private ?string $Audio = null;
-
+    private ?string $audio = null;
+    
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'favoris')]
     private Collection $favoris;
+
+    #[ORM\OneToMany(mappedBy: 'music', targetEntity: Rating::class)]
+    private Collection $ratings;
 
     public function __construct()
     {
         $this->favoris = new ArrayCollection();
+        $this->ratings = new ArrayCollection();
     }
     
     
@@ -100,12 +104,12 @@ class Music
 
     public function getAudio(): ?string
     {
-        return $this->Audio;
+        return $this->audio;
     }
 
-    public function setAudio(string $Audio): self
+    public function setAudio(string $audio): self
     {
-        $this->Audio = $Audio;
+        $this->audio = $audio;
 
         return $this;
     }
@@ -130,6 +134,36 @@ class Music
     public function removeFavori(User $favori): self
     {
         $this->favoris->removeElement($favori);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Rating>
+     */
+    public function getRatings(): Collection
+    {
+        return $this->ratings;
+    }
+
+    public function addRating(Rating $rating): static
+    {
+        if (!$this->ratings->contains($rating)) {
+            $this->ratings->add($rating);
+            $rating->setMusic($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRating(Rating $rating): static
+    {
+        if ($this->ratings->removeElement($rating)) {
+            // set the owning side to null (unless already changed)
+            if ($rating->getMusic() === $this) {
+                $rating->setMusic(null);
+            }
+        }
 
         return $this;
     }

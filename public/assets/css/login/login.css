@@ -1,0 +1,36 @@
+body {
+    text-align: center;
+    color: white;
+    background-image: url('../../img/door-music.jpg');
+    background-size: cover;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+img {
+    margin-top: 1em;
+}
+
+.container {
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 0.6em;
+    border-radius: 10px;
+}
+
+form button {
+    margin-top: 2.5em;
+    margin-bottom: 1em;
+}
+
+.btn {
+    background-color: #000A44;
+    border-color: #000A44;
+}
+
+form label {
+    font-size: 20px;
+}

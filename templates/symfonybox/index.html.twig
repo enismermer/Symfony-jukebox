@@ -1,228 +1,104 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}SymfonyBox{% endblock %}
+{% block title %}Symfony_Jukebox{% endblock %}
+
 {% block body %}
-{#                  Install Swiper : css             #}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
-
-{#                  Install Font Awesome             #}
-<script src="https://kit.fontawesome.com/58a4fdd9c7.js" crossorigin="anonymous"></script>
-
-{#                  Install Swiper : js              #}
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-
-{#                  Externaliser box.js              #}
-<script src="../assets/js/box.js" defer></script>
-
-<style>
-
-    /****************** Titre principal ******************/
-    h1 {
-        text-align:left; 
-        padding-top: 10px;
-        margin-left: 15px;
-    }
-
-    /*** Icone à gauche et à droite du titre principal ***/
-    .icon-music {
-        width: 1.0em;
-        height: 1.0em;
-        margin: 0em;
-    }
-
-    .d-flex {
-        margin-top: -3%;
-    }
-
-    /********************* Header **********************/
-    .header {
-        background-color: black;
-        padding-bottom: 13px;
-    }
-
-    /********************** Logo ***********************/
-    .logo {
-        width: 28%;
-    }
-
-    /****************** Playlist *******************/
-    .playlist a {
-        text-decoration: none;
-        color: #FFFFFF;
-        margin-left: 1.5em;
-        float: right;
-    }
-
-    /****************** Connexion ******************/
-    .logout a {
-        text-decoration: none;
-        color: #FFFFFF;
-        margin-left: 1.5em;
-        float: right;
-    }
-
-    /***************** Inscription *****************/
-    .register a {
-        text-decoration: none;
-        margin-right: 2em;
-        float: right;
-        color: #FFFFFF;
-        margin-left: 1.5em;
-        border: 2px solid white;
-        padding: 5px;
-        margin-top: -6px;
-    }
-
-    html,
-    body {
-        position: relative;
-        height: 100%;
-    }
-    
-    body {
-        background: #000A44;
-        font-family: 'Figtree', Arial, sans-serif;
-        font-size: 14px;
-        color: #fff;
-        margin: 0;
-        padding: 0;
-    }
-
-    /************************************************
-                    Gestion Swiper.js 
-    *************************************************/
-    .swiper {
-        width: 85%;
-        padding-top: 50px;
-        padding-bottom: 50px;
-    }
-
-    .swiper-slide {
-        background-position: center;
-        background-size: cover;
-        width: 450px;
-        height: 450px;
-    }
-
-    h2, h6 {
-        text-align: center;
-    }
-
-    /*** Images générales ***/
-    .swiper-slide img {
-        display: block;
-        width: 100%;
-    }
-
-    /*** Power of the love ***/
-    .swiper-slide .potl {
-        display: block;
-        width: 100%;
-        height: 20em;
-    }
-
-    /********* JUL *********/
-    .swiper-slide .jul {
-        display: block;
-        width: 100%;
-        height: 23em;
-    }
-
-    /******** MERO ********/
-    .swiper-slide .mero {
-        display: block;
-        width: 100%;
-        height: 20em;
-    }
-
-    /******** MRC ********/
-    .swiper-slide .mrc {
-        display: block;
-        width: 100%;
-        height: 21em;
-    }
-
-    .swiper-slide audio {
-        width: 100%;
-    }
-
-    /***************** Vinyle animation ******************/
-    .record-container {
-        display: inline-block;
-        overflow: hidden;
-        border-radius: 10%;
-        margin-left: 35%;
-        visibility: hidden;
-        animation-name: example;
-        animation-duration: 1.5s;
-        animation-iteration-count: infinite;
-    }
-
-    @keyframes example {
-        0%   {transform: rotate(0deg)}
-        100% {transform: rotate(360deg)}
-    }
-
-    /******************** Footer ******************/
-    footer {
-        text-align: center;
-        padding: 1em;
-        background-color: black;
-        padding: 2em;
-    }
-    
-    footer p img {
-        width: 35em;
-    }
-</style>
+<link href="{{ asset('./assets/css/symfonybox.css') }}" rel="stylesheet"/>
 
 <div class="header">
     <h1>
         <img src="../assets/img/icon-music.webp" alt="icon music" class="icon-music">
-        <a href="http://127.0.0.1:8000"><img src="../assets/img/font-symfonybox-bttf.png" alt="font bttf symfonybox" class="logo"></a>
+        <a href="{{ path('home')}}"><img src="../assets/img/font-symfonybox-bttf.png" alt="font bttf symfonybox" class="logo"></a>
     </h1>
 
     <div class="d-flex justify-content-end">
-        <h4 class="playlist">
-            <a href="http://127.0.0.1:8000/symfonybox/favoris" title="Favoris">Playlist</a>
-        </h4>
-        <h4 class="logout">
-            <a href="http://127.0.0.1:8000/logout" title="Logout">Déconnexion</a>
-        </h4>
-        <h4 class="register">
-            <a href="http://127.0.0.1:8000/register" title="Register">Inscription</a>
-        </h4>
+        {# Si l'utilisateur connecté à un ROLE_USER, 
+        on affiche les liens Favoris et Déconnexion #}
+        {% if is_granted('ROLE_USER') %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <h4 class="admin">
+                    <a href="{{ path('admin') }}" title="Admin">Admin</a>
+                </h4>
+            {% endif %}
+            <h4 class="favorites">
+                <a href="{{ path('favoris') }}" title="Favorites">Favoris</a>
+            </h4>
+            <h4 class="logout">
+                <a href="{{ path('logout') }}" title="Logout">Déconnexion</a>
+            </h4>
+        {# sinon on affiche les liens Connexion et Inscription #}
+        {% else %}
+            <h4 class="login">
+                <a href="{{ path('login') }}" title="Login">Connexion</a>
+            </h4>
+            <h4 class="register">
+                <a href="{{ path('register') }}" title="Register">Inscription</a>
+            </h4>
+        {% endif %}
     </div>
 </div>
 
+{# J'affiche la barre de recherche pour rechercher une chanson (title) #}
+{{form_start(form)}}
+    <div class="form">
+        <div class="mt-3 d-flex justify-content-start align-items-center">
+            {{ form_widget(form.title) }}
+            <button type="submit" class="btn btn-primary input-group-text" style="margin-top: 10px;" id="searchButton">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </div>
+{{form_end(form)}}
+
+    {# Si l'utilisateur connecté a un ROLE_USER, 
+    j'affiche le logo user et le nom de l'email connecté #}
+    {% if is_granted('ROLE_USER') %}
+        <div class="user d-flex align-items-center justify-content-end">
+            <img src="{{ asset('assets/img/icon-user.png') }}" alt="User Icon" class="img-fluid">
+            <p class="align-self-center">{{ userEmail }}</p>
+        </div>
+    {% endif %}
+
+{# J'affiche la liste des chansons selon les caractéristiques #}
 <div class="swiper">
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
     <!-- Slides -->
-    {% for song in musics %}
+    {% for music in musics %} {# pour musique de chaque musiques #}
     <div class="swiper-slide">
-        <h2>{{ song.title }}</h2>
+        <h2>{{ music.title }}</h2> {# J'affiche le titre de la musique #}
 
-        <h6>{{ song.singer }}</h6>
+        <h6>{{ music.singer }}</h6> {# J'affiche le chanteur de la musique #}
 
         <div class="txt-red" style="color:red">
-            {% if is_granted("ROLE_USER") %}
-                {% for favoris in song.favoris %}
-                    {% if favoris.id == app.user.id %}
-                        <a href="{{path('retrait_favoris', {'id': song.id})}}"><i class="fas fa-heart" style="font-size:2em; color:red; position:absolute"></i></a>
-                    {% else %}
-                        <a href="{{path('ajout_favoris', {'id': song.id})}}"><i class="far fa-heart" style="font-size:2em;"></i></a>
-                    {% endif %}
-                {% else %}
-                    <a href="{{path('ajout_favoris', {'id': song.id})}}"><i class="far fa-heart" style="font-size:2em; position:absolute"></i></a>
-                {% endfor %}
-            {% else %}
-                <i class="far fa-heart" style="font-size:2em;"></i>
+            {% if is_granted('ROLE_USER') %} {# Si l'utilisateur connecté a un role 'ROLE_USER' #}
+                {% set isFavorited = false %} {# Je définis favoris = FAUX #}
+                    {% for favori in music.favoris %} {# pour favori de chaque music.favoris #}
+                        {% if favori.id == app.user.id %} {# Si favori.id est lié à app.user.id #}
+                            {% set isFavorited = true %} {# Je définis favoris = VRAI #}
+                        {% endif %}
+                    {% endfor %}
+
+                {# Si le favoris est FAUX, j'affiche le lien 'retrait_favoris' avec un id 'music.id' comme paramètre,
+                sinon si le favoris est VRAI, j'affiche le lien 'ajout_favoris' avec id 'music_id' comme paramètre #}
+                <a href="{{ isFavorited ? path('retrait_favoris', {'id': music.id}) : path('ajout_favoris', {'id': music.id}) }}">
+                    {# Si le favoris est FAUX, j'applique la couleur rouge pour retirer,
+                    sinon si le favoris est VRAI, j'applique la couleur blanche pour ajouter #}
+                    <i class="fas fa-heart" style="font-size: 2em; color: {{ isFavorited ? 'red' : 'white' }};"></i>
+                </a>
             {% endif %}
         </div>
-        <img src="{{ asset('uploads/'~ song.image ~'') }}" alt="" class="potl" />
+        <img src="{{ asset('uploads/'~ music.image ~'') }}" alt="image music" class="image" /> {# J'affiche l'image de la musique #}
         <br>
-        <audio src="{{ asset('uploads/'~ song.Audio ~'') }}" controls></audio>
+        <audio src="{{ asset('uploads/'~ music.audio ~'') }}" controls></audio> {# J'affiche l'audio de la musique #}
+        
+        {# J'affiche la moyenne des étoiles par musique #}
+        <p class="d-flex justify-content-end align-items-center mt-2 fs-5">
+            <a href="{{ path('app_rating') }}" style="text-decoration:none; color:white;">
+                <i class="bi bi-star-fill px-2" style="color:#FAE729"></i> 
+                    {{ averages[music.id]|number_format(1) }}
+            </a>
+        </p>
     </div>
     {% endfor %}
   </div>
