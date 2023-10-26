@@ -23,7 +23,6 @@ class UserCrudController extends AbstractCrudController
             TextField::new('email'),
             TextField::new('password'),
             CollectionField::new('roles')
-            
         ];
     }
     
