@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -22,7 +23,8 @@ class UserCrudController extends AbstractCrudController
             IntegerField::new('id') -> hideOnForm(),
             TextField::new('email'),
             TextField::new('password'),
-            CollectionField::new('roles')
+            CollectionField::new('roles'),
+            BooleanField::new('is_verified') -> hideOnForm()
         ];
     }
     
