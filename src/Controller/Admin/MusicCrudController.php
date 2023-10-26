@@ -6,6 +6,7 @@ use App\Entity\Music;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class MusicCrudController extends AbstractCrudController
@@ -19,6 +20,7 @@ class MusicCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            IntegerField::new('id') -> hideOnForm(),
             AssociationField::new('category'),
             TextField::new('title'),
             TextField::new('singer'),

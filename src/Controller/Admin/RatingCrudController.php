@@ -19,6 +19,7 @@ class RatingCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            IntegerField::new('id') -> hideOnForm(),
             AssociationField::new('user', 'User') // Je définis le nom de la propriété
                 ->setFormTypeOptions([
                     'choice_label' => 'email' // Je reprends la colonne 'email' de la table "user"

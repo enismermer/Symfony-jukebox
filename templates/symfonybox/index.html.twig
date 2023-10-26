@@ -65,41 +65,41 @@
   <div class="swiper-wrapper">
     <!-- Slides -->
     {% for music in musics %} {# pour musique de chaque musiques #}
-    <div class="swiper-slide">
-        <h2>{{ music.title }}</h2> {# J'affiche le titre de la musique #}
+        <div class="swiper-slide">
+            <h2>{{ music.title }}</h2> {# J'affiche le titre de la musique #}
 
-        <h6>{{ music.singer }}</h6> {# J'affiche le chanteur de la musique #}
+            <h6>{{ music.singer }}</h6> {# J'affiche le chanteur de la musique #}
 
-        <div class="txt-red" style="color:red">
-            {% if is_granted('ROLE_USER') %} {# Si l'utilisateur connecté a un role 'ROLE_USER' #}
-                {% set isFavorited = false %} {# Je définis favoris = FAUX #}
-                    {% for favori in music.favoris %} {# pour favori de chaque music.favoris #}
-                        {% if favori.id == app.user.id %} {# Si favori.id est lié à app.user.id #}
-                            {% set isFavorited = true %} {# Je définis favoris = VRAI #}
-                        {% endif %}
-                    {% endfor %}
+            <div class="txt-red" style="color:red">
+                {% if is_granted('ROLE_USER') %} {# Si l'utilisateur connecté a un role 'ROLE_USER' #}
+                    {% set isFavorited = false %} {# Je définis favoris = FAUX #}
+                        {% for favori in music.favoris %} {# pour favori de chaque music.favoris #}
+                            {% if favori.id == app.user.id %} {# Si favori.id est lié à app.user.id #}
+                                {% set isFavorited = true %} {# Je définis favoris = VRAI #}
+                            {% endif %}
+                        {% endfor %}
 
-                {# Si le favoris est FAUX, j'affiche le lien 'retrait_favoris' avec un id 'music.id' comme paramètre,
-                sinon si le favoris est VRAI, j'affiche le lien 'ajout_favoris' avec id 'music_id' comme paramètre #}
-                <a href="{{ isFavorited ? path('retrait_favoris', {'id': music.id}) : path('ajout_favoris', {'id': music.id}) }}">
-                    {# Si le favoris est FAUX, j'applique la couleur rouge pour retirer,
-                    sinon si le favoris est VRAI, j'applique la couleur blanche pour ajouter #}
-                    <i class="fas fa-heart" style="font-size: 2em; color: {{ isFavorited ? 'red' : 'white' }};"></i>
+                    {# Si le favoris est FAUX, j'affiche le lien 'retrait_favoris' avec un id 'music.id' comme paramètre,
+                    sinon si le favoris est VRAI, j'affiche le lien 'ajout_favoris' avec id 'music_id' comme paramètre #}
+                    <a href="{{ isFavorited ? path('retrait_favoris', {'id': music.id}) : path('ajout_favoris', {'id': music.id}) }}">
+                        {# Si le favoris est FAUX, j'applique la couleur rouge pour retirer,
+                        sinon si le favoris est VRAI, j'applique la couleur blanche pour ajouter #}
+                        <i class="fas fa-heart" style="font-size: 2em; color: {{ isFavorited ? 'red' : 'white' }};"></i>
+                    </a>
+                {% endif %}
+            </div>
+            <img src="{{ asset('uploads/'~ music.image ~'') }}" alt="image music" class="image" /> {# J'affiche l'image de la musique #}
+            <br>
+            <audio src="{{ asset('uploads/'~ music.audio ~'') }}" controls></audio> {# J'affiche l'audio de la musique #}
+            
+            {# J'affiche la moyenne des étoiles par musique #}
+            <p class="d-flex justify-content-end align-items-center mt-2 fs-5">
+                <a href="{{ path('app_rating') }}" style="text-decoration:none; color:white;">
+                    <i class="bi bi-star-fill px-2" style="color:#FAE729"></i> 
+                        {{ averages[music.id]|number_format(1) }}
                 </a>
-            {% endif %}
+            </p>
         </div>
-        <img src="{{ asset('uploads/'~ music.image ~'') }}" alt="image music" class="image" /> {# J'affiche l'image de la musique #}
-        <br>
-        <audio src="{{ asset('uploads/'~ music.audio ~'') }}" controls></audio> {# J'affiche l'audio de la musique #}
-        
-        {# J'affiche la moyenne des étoiles par musique #}
-        <p class="d-flex justify-content-end align-items-center mt-2 fs-5">
-            <a href="{{ path('app_rating') }}" style="text-decoration:none; color:white;">
-                <i class="bi bi-star-fill px-2" style="color:#FAE729"></i> 
-                    {{ averages[music.id]|number_format(1) }}
-            </a>
-        </p>
-    </div>
     {% endfor %}
   </div>
   <br>
