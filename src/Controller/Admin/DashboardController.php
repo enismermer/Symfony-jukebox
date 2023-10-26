@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Category;
-use App\Entity\Joke;
 use App\Entity\Music;
 use App\Entity\Rating;
 use App\Entity\User;
