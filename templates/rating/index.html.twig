@@ -10,12 +10,14 @@
         <a href="{{ path('home')}}"><img src="../assets/img/font-symfonybox-bttf.png" alt="font bttf symfonybox" class="logo"></a>
     </h1>
 
-    <div class="d-flex justify-content-end">
-        {# L'utilisateur connecté à un lien Déconnexion #}
-        <h4 class="logout">
-            <a href="{{ path('logout')}}" title="Logout">Déconnexion</a>
-        </h4>
-    </div>
+    {% if is_granted('ROLE_USER') %}
+        <div class="d-flex justify-content-end">
+            {# L'utilisateur connecté à un lien Déconnexion #}
+            <h4 class="logout">
+                <a href="{{ path('logout')}}" title="Logout">Déconnexion</a>
+            </h4>
+        </div>
+    {% endif %}
 </div>
 
 {# J'affiche le lien Retour pour revenir à la page d'accueil #}
@@ -33,7 +35,7 @@
         </div>
     {% endif %}
 
-    {# J'affiche le lien du formulaire de notes et évaluations #}
+    {# J'affiche le lien du formulaire de notes et évaluations en cas de connexion #}
     {% if is_granted('ROLE_USER') %}
         <div class="form-rating">
             <a href="{{ path('app_rating_form') }}">

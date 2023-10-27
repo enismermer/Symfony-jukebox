@@ -11,10 +11,12 @@
         <a href="{{ path('home')}}"><img src="../assets/img/font-symfonybox-bttf.png" alt="font bttf symfonybox" class="logo"></a>
     </h1>
 
-    <div class="d-flex justify-content-end">
-        {# Si l'utilisateur connecté à un ROLE_USER, 
-        on affiche les liens Favoris et Déconnexion #}
-        {% if is_granted('ROLE_USER') %}
+    {# Si l'utilisateur connecté a un ROLE_USER, 
+    on affiche les liens Favoris et Déconnexion #}
+    {% if is_granted('ROLE_USER') %}
+        <div class="d-flex justify-content-end">
+            {# Et si l'utilisateur connecté a un ROLE_ADMIN,
+            on affiche le lien Admin #}
             {% if is_granted('ROLE_ADMIN') %}
                 <h4 class="admin">
                     <a href="{{ path('admin') }}" title="Admin">Admin</a>
@@ -26,16 +28,18 @@
             <h4 class="logout">
                 <a href="{{ path('logout') }}" title="Logout">Déconnexion</a>
             </h4>
-        {# sinon on affiche les liens Connexion et Inscription #}
-        {% else %}
+        </div>
+    {# sinon on affiche les liens Connexion et Inscription #}
+    {% else %}
+        <div class="d-flex justify-content-end">
             <h4 class="login">
                 <a href="{{ path('login') }}" title="Login">Connexion</a>
             </h4>
             <h4 class="register">
                 <a href="{{ path('register') }}" title="Register">Inscription</a>
             </h4>
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
 </div>
 
 {# J'affiche la barre de recherche pour rechercher une chanson (title) #}

@@ -25,34 +25,14 @@ class SymfonyboxController extends AbstractController
     #[Route('/', name: 'app_symfonybox')]
     public function index(Request $request, MusicRepository $musicRepository, SecurityBundleSecurity $security, EntityManagerInterface $entityManager): Response
     {
-        $user = $security->getUser(); // Obtenez l'utilisateur actuellement connecté
-
-        if ($user) {
-            $userEmail = $user->getEmail(); // Accédez à l'email de l'utilisateur
-        } else {
-            $userEmail = null;
-        }
-
-        $form = $this->createForm(SongSearchFormType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $searchTerm = $form->get('title')->getData();
-            $musics = $musicRepository->findByTitle($searchTerm); // Ajoutez cette méthode à votre MusicRepository
-
-            return $this->render('symfonybox/index.html.twig', [
-                'musics' => $musics,
-                'form' => $form->createView(),
-            ]);
-        }
-
+        
         // Récupérez toutes les chansons
         $musicRepository = $entityManager->getRepository(Music::class);
         $musics = $musicRepository->findAll();
-
+        
         // Initialisez un tableau pour stocker les moyennes
         $averages = [];
-
+        
         // Pour chaque chanson, calculez la moyenne des étoiles
         foreach ($musics as $music) {
             $musicId = $music->getId();
@@ -67,6 +47,30 @@ class SymfonyboxController extends AbstractController
             $averages[$musicId] = $average;
         }
 
+
+        $user = $security->getUser(); // Obtenez l'utilisateur actuellement connecté
+    
+        if ($user) {
+            $userEmail = $user->getEmail(); // Accédez à l'email de l'utilisateur
+        } else {
+            $userEmail = null;
+        }
+    
+        $form = $this->createForm(SongSearchFormType::class);
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $searchTerm = $form->get('title')->getData();
+            $musics = $musicRepository->findByTitle($searchTerm); // Ajoutez cette méthode à votre MusicRepository
+    
+            return $this->render('symfonybox/index.html.twig', [
+                'musics' => $musics,
+                'form' => $form->createView(),
+                'userEmail' => $userEmail,
+                'averages' => $averages
+            ]);
+        }
+        
         return $this->render('symfonybox/index.html.twig', [
             'musics' => $musics,
             'form' => $form->createView(),
