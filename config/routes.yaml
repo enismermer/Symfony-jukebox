@@ -34,6 +34,11 @@ favoris:
     path: '/favoris'
     controller: 'App\Controller\SymfonyboxController::favoris'
 
+# Page Rating
+rating:
+    path: '/rating'
+    controller: 'App\Controller\RatingController::index'
+
 # Page Rating Edit
 app_rating_form_edit:
     path: '/rating-form/edit/{id}'

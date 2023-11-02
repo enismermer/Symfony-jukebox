@@ -23,20 +23,23 @@
                 </h4>
             {% endif %}
             <h4 class="favorites">
-                <a href="{{ path('favoris') }}" title="Favorites">Favoris</a>
+                <a href="{{ path('favoris') }}" title="Favoris">Favoris</a>
+            </h4>
+            <h4 class="rating">
+                <a href="{{ path('rating') }}" title="Evaluations">Evaluations</a>
             </h4>
             <h4 class="logout">
-                <a href="{{ path('logout') }}" title="Logout">Déconnexion</a>
+                <a href="{{ path('logout') }}" title="Déconnexion">Déconnexion</a>
             </h4>
         </div>
     {# sinon on affiche les liens Connexion et Inscription #}
     {% else %}
         <div class="d-flex justify-content-end">
             <h4 class="login">
-                <a href="{{ path('login') }}" title="Login">Connexion</a>
+                <a href="{{ path('login') }}" title="Connexion">Connexion</a>
             </h4>
             <h4 class="register">
-                <a href="{{ path('register') }}" title="Register">Inscription</a>
+                <a href="{{ path('register') }}" title="Inscription">Inscription</a>
             </h4>
         </div>
     {% endif %}
@@ -98,10 +101,8 @@
             
             {# J'affiche la moyenne des étoiles par musique #}
             <p class="d-flex justify-content-end align-items-center mt-2 fs-5">
-                <a href="{{ path('app_rating') }}" style="text-decoration:none; color:white;">
-                    <i class="bi bi-star-fill px-2" style="color:#FAE729"></i> 
-                        {{ averages[music.id]|number_format(1) }}
-                </a>
+                <i class="bi bi-star-fill px-2" style="color:#FAE729"></i> 
+                    {{ averages[music.id]|number_format(1) }}
             </p>
         </div>
     {% endfor %}
