@@ -142,15 +142,12 @@ h2, h6 {
 
 /***************** Vinyle animation ******************/
 .record-container {
-    display: inline-block;
+    display: flex;
     overflow: hidden;
     border-radius: 10%;
-    margin-left: 35%;
+    align-items: center;
+    justify-content: center;
     visibility: hidden;
-    animation-name: disque;
-    animation-duration: 1.5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
 }
 
 @keyframes disque {

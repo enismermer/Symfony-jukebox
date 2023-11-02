@@ -57,16 +57,35 @@ const swiper = new Swiper('.swiper' , {
             Apparition et disparition du vinyle
 **********************************************************/
 let audio = document.querySelectorAll('audio');
-console.log(audio);
+// console.log(audio);
 let vinyle = document.querySelector('.record-container');
 
 for (let i = 0; i < audio.length; i++) {
     audio[i].onplay = function () {
         // console.log("Je suis en play");
         vinyle.style.visibility = "visible";
-        vinyle.style.transform = "rotate(360deg)";
+        vinyle.style.animation = "disque 2s linear infinite";
     }
     audio[i].onpause = function () {
         vinyle.style.visibility = "hidden";
+        vinyle.style.animation = "none";
     }
 }
+
+
+
+
+/**********************************************************
+            Jouer une chanson à tour de rôle
+**********************************************************/
+let audios = document.querySelectorAll('audio');
+audios.forEach(audio => {
+    audio.addEventListener('play', (event) => {
+        // Lorsqu'une chanson commence à jouer, arrêtez toutes les autres
+        audios.forEach(player => {
+            if (player !== event.target) {
+                player.pause();
+            }
+        });
+    });
+});
