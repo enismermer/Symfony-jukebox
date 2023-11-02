@@ -51,7 +51,7 @@ class SymfonyboxController extends AbstractController
         $user = $security->getUser(); // Obtenez l'utilisateur actuellement connecté
     
         if ($user) {
-            $userEmail = $user->getEmail(); // Accédez à l'email de l'utilisateur
+            $userEmail = $user; // Accédez à l'email de l'utilisateur
         } else {
             $userEmail = null;
         }

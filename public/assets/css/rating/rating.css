@@ -88,6 +88,7 @@ body {
 }
 
 .title {
+    display: flex;
     padding: 3px;
     background: black;
     margin: 2% 10%;
