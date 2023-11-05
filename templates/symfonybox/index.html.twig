@@ -45,17 +45,21 @@
     {% endif %}
 </div>
 
-{# J'affiche la barre de recherche pour rechercher une chanson (title) #}
-{{form_start(form)}}
-    <div class="form">
-        <div class="mt-3 d-flex justify-content-start align-items-center">
-            {{ form_widget(form.title) }}
-            <button type="submit" class="btn btn-primary input-group-text" style="margin-top: 10px;" id="searchButton">
-                <i class="bi bi-search"></i>
-            </button>
+{# Si l'utilisateur connecté a un ROLE_USER, 
+on affiche la barre de recherche #}
+{% if is_granted('ROLE_USER') %}
+    {# J'affiche la barre de recherche pour rechercher une chanson (title) #}
+    {{form_start(form)}}
+        <div class="form">
+            <div class="mt-3 d-flex justify-content-start align-items-center">
+                {{ form_widget(form.title) }}
+                <button type="submit" class="btn btn-primary input-group-text" style="margin-top: 10px;" id="searchButton">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
         </div>
-    </div>
-{{form_end(form)}}
+    {{form_end(form)}}
+{% endif %}
 
     {# Si l'utilisateur connecté a un ROLE_USER, 
     j'affiche le logo user et le nom de l'email connecté #}
