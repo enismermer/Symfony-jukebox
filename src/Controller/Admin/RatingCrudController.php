@@ -21,11 +21,11 @@ class RatingCrudController extends AbstractCrudController
     {
         return [
             IntegerField::new('id') -> hideOnForm(),
-            AssociationField::new('user', 'User') // Je définis le nom de la propriété
+            AssociationField::new('user', 'Email') // Je définis le nom de la propriété
                 ->setFormTypeOptions([
                     'choice_label' => 'email' // Je reprends la colonne 'email' de la table "user"
                 ]),
-            AssociationField::new('music', 'Music') // Je définis le nom de la propriété
+            AssociationField::new('music', 'Title') // Je définis le nom de la propriété
                 ->setFormTypeOptions([
                     'choice_label' => 'title' // Je reprends la colonne 'title' de la table "music"
                 ]),
