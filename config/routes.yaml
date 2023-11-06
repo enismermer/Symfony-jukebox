@@ -39,6 +39,11 @@ rating:
     path: '/rating'
     controller: 'App\Controller\RatingController::index'
 
+# Page Rating Form
+app_rating_form:
+    path: '/rating-form'
+    controller: App\Controller\RatingController::form
+
 # Page Rating Edit
 app_rating_form_edit:
     path: '/rating-form/edit/{id}'
