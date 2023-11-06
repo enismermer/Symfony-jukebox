@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Rating;
 use App\Form\RatingType;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security as SecurityBundleSecurity;
@@ -24,10 +23,10 @@ class RatingController extends AbstractController
     #[Route('/rating', name: 'app_rating')]
     public function index(EntityManagerInterface $entityManager, SecurityBundleSecurity $security): Response
     {
-        $user = $security->getUser(); // Obtenez l'utilisateur actuellement connecté
+        $user = $security->getUser(); // Obtient l'utilisateur actuellement connecté
 
         if ($user) {
-            $userEmail = $user; // Accédez à l'email de l'utilisateur
+            $userEmail = $user; // Accède à l'email de l'utilisateur
         } else {
             $userEmail = null;
         }
@@ -38,8 +37,8 @@ class RatingController extends AbstractController
         $query = $ratingRepository
         ->createQueryBuilder('r')
         ->select('u.email as user_email, m.image as music_image, m.title as music_title, r.id, r.comment, r.rating, r.updated_at')
-        ->leftJoin('r.user', 'u') // Effectuez une jointure avec l'entité User
-        ->leftJoin('r.music', 'm') // Effectuez une jointure avec l'entité Music
+        ->leftJoin('r.user', 'u') // Effectue une jointure avec l'entité User
+        ->leftJoin('r.music', 'm') // Effectue une jointure avec l'entité Music
         ->getQuery();
 
         // dd($query);
@@ -62,24 +61,24 @@ class RatingController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Obtenez l'utilisateur actuellement connecté
+            // Obtient l'utilisateur actuellement connecté
             $user = $this->getUser();
 
             if ($user) {
-                // Associez l'utilisateur à la notation
+                // Associe l'utilisateur à la notation
                 $rating->setUser($user);
             
-                // Définissez created_at et updated_at
+                // Définit "created_at" et "updated_at"
                 $timezone = new \DateTimeZone('Europe/Paris'); // Fuseau horaire de la France
                 $dateTime = new \DateTime('now', $timezone);
                 $rating->setCreatedAt($dateTime);
                 $rating->setUpdatedAt($dateTime);
 
-                // Gérer la sauvegarde du rating dans la base de données
+                // Gère la sauvegarde du rating dans la base de données
                 $this->entityManager->persist($rating);
                 $this->entityManager->flush();
 
-                // Rediriger vers la page rating/index.html.twig
+                // Redirige vers la page rating/index.html.twig
                 return $this->redirectToRoute('app_rating');
             }
         }
@@ -92,7 +91,7 @@ class RatingController extends AbstractController
     #[Route('/rating-form/edit/{id}', name: 'app_rating_edit')]
     public function edit(Request $request, EntityManagerInterface $entityManager, $id): Response
     {
-        // Vérifiez que l'utilisateur actuel est bien l'auteur de la note (vous pouvez implémenter une logique de sécurité ici)
+        // Vérifie que l'utilisateur actuel est bien l'auteur de la note
         $user = $this->getUser();
         $rating = $entityManager->getRepository(Rating::class)->find($id);
         
@@ -100,21 +99,21 @@ class RatingController extends AbstractController
             throw $this->createAccessDeniedException('Vous n\'avez pas la permission de modifier cette note.');
         }
 
-        // Créez un formulaire pour la modification de la note
+        // Crée un formulaire pour la modification de la note
         $form = $this->createForm(RatingType::class, $rating);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Mettez à jour updated_at à la date actuelle
+            // Met à jour "updated_at" à la date actuelle
             $timezone = new \DateTimeZone('Europe/Paris'); // Fuseau horaire de la France
             $dateTime = new \DateTime('now', $timezone);
             $rating->setUpdatedAt($dateTime);
 
-            // Sauvegardez la modification en base de données
+            // Sauvegarde la modification en base de données
             $this->entityManager->persist($rating);
             $this->entityManager->flush();
 
-            // Redirigez l'utilisateur vers la page de confirmation ou une autre page appropriée
+            // Redirige l'utilisateur vers la page rating/index.html.twig
             return $this->redirectToRoute('app_rating', ['id' => $rating->getId()]);
         }   
 
@@ -127,7 +126,7 @@ class RatingController extends AbstractController
     #[Route('/rating/delete/{id}', name: 'app_rating_delete')]
     public function deleteRating(Rating $rating, EntityManagerInterface $entityManager): Response
     {
-        // Ajoutez la logique de suppression de l'évaluation ici
+        // Supprime l'évaluation actuelle de la base de données.
         $entityManager->remove($rating);
         $entityManager->flush();
 
