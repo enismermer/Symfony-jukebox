@@ -26,14 +26,14 @@ class SymfonyboxController extends AbstractController
     public function index(Request $request, MusicRepository $musicRepository, SecurityBundleSecurity $security, EntityManagerInterface $entityManager): Response
     {
         
-        // Récupérez toutes les chansons
+        // Récupére toutes les chansons
         $musicRepository = $entityManager->getRepository(Music::class);
         $musics = $musicRepository->findAll();
         
-        // Initialisez un tableau pour stocker les moyennes
+        // Initialise un tableau pour stocker les moyennes
         $averages = [];
         
-        // Pour chaque chanson, calculez la moyenne des étoiles
+        // Pour chaque chanson, calcule la moyenne des étoiles
         foreach ($musics as $music) {
             $musicId = $music->getId();
             $query = $entityManager->createQueryBuilder()
@@ -48,10 +48,10 @@ class SymfonyboxController extends AbstractController
         }
 
 
-        $user = $security->getUser(); // Obtenez l'utilisateur actuellement connecté
+        $user = $security->getUser(); // Obtient l'utilisateur actuellement connecté
     
         if ($user) {
-            $userEmail = $user; // Accédez à l'email de l'utilisateur
+            $userEmail = $user; // Accède à l'email de l'utilisateur
         } else {
             $userEmail = null;
         }
@@ -61,7 +61,7 @@ class SymfonyboxController extends AbstractController
     
         if ($form->isSubmitted() && $form->isValid()) {
             $searchTerm = $form->get('title')->getData();
-            $musics = $musicRepository->findByTitle($searchTerm); // Ajoutez cette méthode à votre MusicRepository
+            $musics = $musicRepository->findByTitle($searchTerm); // Ajoute cette méthode à votre MusicRepository
     
             return $this->render('symfonybox/index.html.twig', [
                 'musics' => $musics,
