@@ -30,18 +30,17 @@
     <div class="swiper-wrapper">
         <!-- Slides -->
         {% for favori in favoris %} {# pour favori de chaque favoris #}
-        <div class="swiper-slide">
-                
-            <h2>{{ favori.title }}</h2> {# J'affiche le titre du favori #}
+            <div class="swiper-slide">
+                    
+                <h2>{{ favori.title }}</h2> {# J'affiche le titre du favori #}
 
-            <h6>{{ favori.singer }}</h6> {# J'affiche le titre du favori #}
+                <h6>{{ favori.singer }}</h6> {# J'affiche le titre du favori #}
 
-
-            <img src="{{ asset('uploads/'~ favori.image ~'') }}" alt="image music" class="image" /> {# J'affiche l'image du favori #}
-            <br>
-            <audio src="{{ asset('uploads/'~ favori.audio ~'') }}" controls></audio> {# J'affiche l'audio du favori' #}
-        </div>
-    {% endfor %}
+                <img src="{{ asset('uploads/'~ favori.image ~'') }}" alt="image music" class="image" /> {# J'affiche l'image du favori #}
+                <br>
+                <audio src="{{ asset('uploads/'~ favori.audio ~'') }}" controls></audio> {# J'affiche l'audio du favori' #}
+            </div>
+        {% endfor %}
    </div>
   <br>
   <!-- If we need pagination -->
