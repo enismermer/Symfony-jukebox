@@ -23,10 +23,10 @@ const swiper = new Swiper('.swiper' , {
         slideShadows: true,
     },
 
-    autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-    },
+    // autoplay: {
+    //     delay: 3000,
+    //     disableOnInteraction: false,
+    // },
 
     // If we need pagination
     pagination: {
